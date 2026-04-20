@@ -18,6 +18,7 @@ const AppState = (props) => {
     category: "all",
     color: "all",
     price: "all",
+    search: ""
   });
 
 
@@ -28,6 +29,7 @@ const AppState = (props) => {
       category: "all",
       color: "all",
       price: "all",
+      search:""
     });
     
   };
@@ -52,7 +54,9 @@ const AppState = (props) => {
       const matchPrice =
         d.newPrice >= min && d.newPrice <= max;
 
-      return matchCompany && matchCategory && matchColor && matchPrice;
+      const matchSearch = filters.search === "" || d.title.trim().toLowerCase().includes(filters.search) || d.category.trim().toLowerCase().includes(filters.search)
+
+      return matchCompany && matchCategory && matchColor && matchPrice && matchSearch
     });
   }, [allData, filters]);
 
